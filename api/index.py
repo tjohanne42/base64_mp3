@@ -3,7 +3,7 @@ import base64
 
 app = Flask(__name__)
 
-@app.route('/', methods=['POST'])
+@app.route('/', methods=['GET', 'POST'])
 def convert_file():
 	if request.method == 'POST':
 		try:
@@ -13,9 +13,10 @@ def convert_file():
 			response.headers.set('Content-Type', 'audio/mpeg')
 			return response
 		except:
-			return jsonify({"error": str(e)})
+			return f"error"
 	else:
-		return jsonify({"error": str(e)})
+		# return jsonify({"error": str(e)})
+		return f"error"
 
 # if __name__ == '__main__':
 # 	app.run(debug=True)
